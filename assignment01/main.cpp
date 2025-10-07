@@ -41,6 +41,7 @@
 /*  Väl Godkänd: Studenten har dessutom implementerat minst en eller två extra funktionaliteter, beroende på utmaningens komplexitet. 
     Studenten har även motiverat sina tekniska val i dokumentationen.*/
 
+    //  Gruvbox dark hard
 #include <iostream>
 #include <limits>   // den här behövde jag för hantering av att användaren anger irrelevanta datatyper (line 73).
 #include <string>
@@ -50,17 +51,32 @@ int val;
 double input1, input2, result;  // Här anges i förväg att det finns tre double-variabler. Värdet på dessa (även 'int val') kommer att defineras av användaren. 
                                 // Jag använder double för att kunna cout:a och cin:a både hel- och decimaltal från användaren
 std::string operNames[4] = { "Addition", "Subtraktion", "Multiplikation", "Division" }; // Jag gör operNames till en string-array som håller 4 värden, där 0 är Addition, 1 är Subtraktion, osv.
+std::string operSymbol[4] = { "+", "-", "x", "/" };
 
-int main() {
-    while (true) {
-        std::cout   <<  "Meny | Välj mellan alternativen 1 till 5\n"
+void menyUI() {
+    int val;
+    //std::string operNames[4] = { "Addition", "Subtraktion", "Multiplikation", "Division" }; // Jag gör operNames till en string-array som håller 4 värden, där 0 är Addition, 1 är Subtraktion, osv.
+    std::cout   <<  "Meny | Välj mellan alternativen 1 till 5\n"
         << "\t1. " << operNames[0] << "\n"  //  Cout:ar arrayens första strängvariabel (dvs 0) som ju är 'Addition'
         << "\t2. " << operNames[1] << "\n"  //  Cout:ar arrayens andra strängvariabel (dvs 1), 'Subtraktion'
         << "\t3. " << operNames[2] << "\n"  //  osv...
         << "\t4. " << operNames[3] << "\n"
         << "\t5. Avsluta\n\n"
-        << "\tSvar: ";
-        std::cin >> val;
+        << "\tSvar:\t";
+    }
+    
+    int main() {
+        while (true) {
+            menyUI();
+            std::cin >> val;
+        // std::cout   <<  "Meny | Välj mellan alternativen 1 till 5\n"
+        // << "\t1. " << operNames[0] << "\n"  //  Cout:ar arrayens första strängvariabel (dvs 0) som ju är 'Addition'
+        // << "\t2. " << operNames[1] << "\n"  //  Cout:ar arrayens andra strängvariabel (dvs 1), 'Subtraktion'
+        // << "\t3. " << operNames[2] << "\n"  //  osv...
+        // << "\t4. " << operNames[3] << "\n"
+        // << "\t5. Avsluta\n\n"
+        // << "\tSvar: ";
+        // std::cin >> val;
         
         if (std::cin.fail() || val < 1 || val > 5) {  // Felaktig input (char) ELLER om input är mindre än 1 ELLER större än 5
             std::cout << "::::::::::::::::::::::::::::::::::::::::\n"
@@ -72,30 +88,29 @@ int main() {
             /*  cin.ignore →        ignorera lagrad input ... 
                 numeric_limits → ... av aritmetiska typer (integraltal och flyt-tal)
                 streamsize>::max(), '\n'); → från största möjliga värdet från dataflöde, tills du når '\n'
-                
-            Jag hade kunnat skriva "std::cin.ignore(10)", men genom att använda 
-            numeric_limits<streamsize>::max() så behöver jag inte oroa mig om 
-            användaren skulle ange inputs över 10 eller 100 (jag klistrade in Hamlet som input, det klarade den av väldigt bra) */
+                Jag hade kunnat skriva "std::cin.ignore(10)", men genom att använda 
+                numeric_limits<streamsize>::max() så behöver jag inte oroa mig om 
+                användaren skulle ange inputs över 10 eller 100 (jag klistrade in Hamlet som input, det klarade den av väldigt bra) */
             continue;           // skippa resten, återgå
         }
         if (val == 5) {
             std::cout << "\n\tOK\n\tHEJDÅ\n";
             break;
         }
-        switch (val) {
+        switch (val) {  // Skulle vilja göra innehållet i varje case till att den kallar på en funktion istället
             case 1: {
                 std::string oper = operNames[val-1]; // Kallar på operNames-arrayen, använder användarens input ('val', som här är 1), men subtraherar 1 så att det blir enligt arrayens "ordning", dvs 0 ('Addition')
                 std::cout << oper << ", tal 1:\t";
                 std::cin >> input1;
-                std::cout << oper << ", tal 2:\t+ ";
+                std::cout << oper << ", tal 2:\t" << operSymbol[val-1] << " ";
                 std::cin >> input2;
-                result = input1 + input2;
+                result = input1 + input2;           // Adderar input1 med input2
                 std::cout << "\n" << oper << "\nResultat:\t" 
                 << input1 << " + " << input2 << " = " << result << "\n\n";
                 break;
             }
             case 2: {
-                std::string oper = operNames[val-1];    //  Tidigare std::string oper = "Subtraktion";
+                std::string oper = operNames[val-1];
                 std::cout << oper << ", tal 1:\t";
                 std::cin >> input1;
                 std::cout << oper << ", tal 2:\t- ";
@@ -106,7 +121,7 @@ int main() {
                 break;
             }
             case 3: { 
-                std::string oper = operNames[val-1];    // Tidigare std::string oper = "Multiplikation";
+                std::string oper = operNames[val-1];    // Multiplikation
                 std::cout << oper << ", tal 1:\t";
                 std::cin >> input1;
                 std::cout << oper << ", tal 2:\tx ";
@@ -117,7 +132,7 @@ int main() {
                 break;
             }
             case 4: {
-                std::string oper = operNames[val-1];    // Tidigare std::string oper = "Division";
+                std::string oper = operNames[val-1];    // Division
                 std::cout << oper << ", tal 1:\t";
                 std::cin >> input1;
                 std::cout << oper << ", tal 2:\t/ ";

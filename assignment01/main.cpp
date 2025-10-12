@@ -2,7 +2,7 @@
 #include <limits> // för hantering av irrelevant input.
 #include <string>
 
-int val; // Här anges i förväg att det finns 4 variabler som användaren kommer att ange värdet på senare.
+int val;
 double input1, input2, result; // double för att kunna cout:a och cin:a decimaltal
 std::string oper;
 std::string symbol;
@@ -21,7 +21,6 @@ void menyUI() {
         << "\t5. Avsluta\n\n"
         << "\tAlternativ:\t";
     }
-
 std::string inputOperations() {
     oper    = operNames[val-1];     // användarinput (exempelvis 'val = 1') subtraheras med 1 och blir 0, enligt "array-ordning", 0 (oper = "Addition")
     symbol  = operSymbol[val-1];    // -||-
@@ -32,7 +31,6 @@ std::string inputOperations() {
     std::cin    >> input2;
     return oper;
 }
-
 int main() {
     while (true) {
         menyUI(); // Kalla funktion menyUI
@@ -42,11 +40,11 @@ int main() {
             std::cout   << "::::::::::::::::::::::::::::::::::::::::\n"
                         << "Det där är inte en siffra mellan 1-5 :/\n\t"
                         << "Försök igen\n"
-                        << "::::::::::::::::::::::::::::::::::::::::\n";          
+                        << "::::::::::::::::::::::::::::::::::::::::\n";
             std::cin.clear();   // Reset:ar flag för "dålig character input" 
             std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); 
-/* Ledsen för GIGANTISKT kommentarsblock nedan (ville bara dokumentera min uppfattning av 
-raderna ovan. Rätta gärna om jag har missuppfattat, annars helt OK att titta bort!)
+/* Ledsen för GIGANTISKT kommentarsblock (ville bara dokumentera min uppfattning av 
+raderna ovan. Rätta gärna om jag har missuppfattat, annars helt OK att titta bort)
 'cin.ignore'
     → ignorera lagrad character input
 'numeric_limits<streamsize>::max()'
@@ -54,36 +52,34 @@ raderna ovan. Rätta gärna om jag har missuppfattat, annars helt OK att titta b
         ... tills vi når '\n' (alltså där användaren matade in ENTER).
 Jag hade kunnat skriva "cin.ignore(100)", men genom att använda max() så behöver vi inte 
 oroa oss för att användaren skulle ange över 100 i length.
-Jag testade att klistra in hela Hamlet som input, efter att ha tryckt 
+Jag testade att klistra in hela Hamlet (ja, boken) som input, efter att ha tryckt 
 ENTER så avvärjade den det lika snabbt som en normalstor input, coolt :o */
-            continue; // lämna if och hoppa tillbaka upp till toppen av loopen igen/ta fram menyn
+            continue; // lämna detta block och hoppa tillbaka upp till toppen av loopen igen/ta fram menyn
         }
-
         if (val == 5) {
             std::cout << "\n\tOK\n\tHEJDÅ\n";
             break;
         }
-
         switch (val) {
             case 1: {   // Addition
                 std::string oper = inputOperations();
                 result = input1 + input2;
                 std::cout << "\n" << oper << "\nResultat:\t" 
-                << input1 << " + " << input2 << " = " << result << "\n\n";
+                << input1 << " " << symbol << " " << input2 << " = " << result << "\n\n";
                 break;
             }
             case 2: {   // Subtraktion
                 std::string oper = inputOperations();
                 result = input1 - input2;
                 std::cout << "\n" << oper << "\nResultat:\t" 
-                << input1 << " - " << input2 << " = " << result << "\n\n";
+                << input1 << " " << symbol << " " << input2 << " = " << result << "\n\n";
                 break;
             }
             case 3: {   // Multiplikation
                 std::string oper = inputOperations();
                 result = input1 * input2;
                 std::cout << "\n" << oper << "\nResultat:\t" 
-                << input1 << " x " << input2 << " = " << result << "\n\n";
+                << input1 << " " << symbol << " " << input2 << " = " << result << "\n\n";
                 break;
             }
             case 4: {   // Division
@@ -95,7 +91,7 @@ ENTER så avvärjade den det lika snabbt som en normalstor input, coolt :o */
                 } else {
                     result = input1 / input2;
                     std::cout << "\n" << oper << "\nResultat:\t" 
-                    << input1 << " / " << input2 << " = " << result << "\n\n";
+                    << input1 << " " << symbol << " " << " = " << result << "\n\n";
                 }
                 break;
             }

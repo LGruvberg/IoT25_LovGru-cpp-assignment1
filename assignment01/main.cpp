@@ -1,5 +1,6 @@
 #include <iostream>
 #include <limits> // för hantering av irrelevant input.
+#include <vector>
 #include <string>
 
 int val;
@@ -16,8 +17,12 @@ void minimenyA();   //  För att kunna ha mina minimenyfunktioner i botten - ist
 void minimenyB();   //  på dem här i början (förbereda C++ i förväg, eftersom att kodraderna exekveras uppifrån och nedåt)
 
 int main() {
-    int menyVal;
-    while (true) {
+    std::cout << "Här är ett program som består av HUVUDMENY, Minimeny A och Minimeny B.\n";
+    std::vector<double> measures;   // Lista med mätvärden
+    bool run = true;
+    
+    while (run) {
+        int menyVal;
         std::cout 
             << ".:HUVUDMENY:.\n"
             << "1. Minimeny A\n"
@@ -28,6 +33,7 @@ int main() {
         switch (menyVal) {
             case 1: 
                 minimenyA(); 
+                
                 break;
             case 2: 
                 minimenyB(); 
@@ -58,23 +64,25 @@ void minimenyA() {
     int buffertA = 0;
     while (true) {
         std::cout << "\n\t.:Minimeny A:.\n"
-                  << "\t1. Skapa värden\n"
+                  << "\t1. Skapa 5 värden manuellt eller slumpartat\n"
                   << "\t2. Visa statistik\n"
                   << "\t3. Tillbaka till huvudmeny\n\n\t\tSvar:\t";
         std::cin >> menyA;
 
         if (menyA == 3) {
             break;
-    }
+        }
         if (menyA == 2 && buffertA == 0) {
-            std::cout << "Det finns ingen data att visa statistik på!\nGenomför alternativ '2. Skapa värden' först.\n";
+            std::cout << "\nDet finns ingen data att visa statistik på än!\nGenomför alternativ '2. Skapa värden' först.\n";
             continue;
         }
-
         if (menyA == 1) {
-            std::cout << "\n\t\t1. Ange 5 värden\n\t\t2. Generera 5 random-värden\n";
+            int menyA = 0;
+            std::cout << "\n\t\t.:Alternativ:.\n\t\t1. Ange 5 värden manuellt\n\t\t2. Generera 5 slump-värden\n\t\t3. Tillbaka till föregående meny\n\n\t\tSvar:\t";
             std::cin >> menyA;
             buffertA = 1;
+            if (menyA == 3)
+                continue;
         }
     }
 }

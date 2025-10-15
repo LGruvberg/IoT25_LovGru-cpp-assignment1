@@ -99,3 +99,5 @@ ENTER så avvärjade den det lika snabbt som en normalstor input, coolt :o */
     }
     return 0;
 }
+
+        // Static - kika närmare på

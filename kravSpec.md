@@ -1,21 +1,21 @@
 # Kravspecifikation:
 ## 1. Datainmatning
-#####    a. Användaren ska kunna ange ett antal mätvärden manuellt.
-#####    b. Programmet ska hantera ogiltig input på ett robust sätt.
-#####    c. (Utmaning: tillåt både hel- och decimaltal)
+#####    a. Användaren ska kunna ange ett antal mätvärden manuellt.         DONE
+#####    b. Programmet ska hantera ogiltig input på ett robust sätt.        DONE
+#####    c. (Utmaning: tillåt både hel- och decimaltal)                     DONE
 ## 2. Databehandling
 #####    a. Beräkna och visa:
-######        i. Antal värden
-######        ii. Summa
-######        iii. Medelvärde
-######        iv. Min- och max-värde
-######        v. Varians och standardavvikelse
+######        i. Antal värden                                               a
+######        ii. Summa                                                     a
+######        iii. Medelvärde                                               a
+######        iv. Min- och max-värde                                        a
+######        v. Varians och standardavvikelse                              a
 ## 3. Menygränssnitt (UI)
 #####    a. Användaren ska kunna välja va de vill göra via en meny:
-######        i. Lägg till nya mätvärden
-######        ii. Visa statistiken
-######        iii. Söka efter ett visst värde
-######        iv. Sortera listan av mätvärden (valfritt: stigande/fallande)
+######        i. Lägg till nya mätvärden                                    a
+######        ii. Visa statistiken                                          a
+######        iii. Söka efter ett visst värde                               a
+######        iv. Sortera listan av mätvärden (valfritt: stigande/fallande) a
 ######        v. Avsluta programmet
 ## 4. Struktur och kvalitet
 #####    a. Programmet ska vara uppdelat i flera funktioner (eller metoder om du vill använda C++)

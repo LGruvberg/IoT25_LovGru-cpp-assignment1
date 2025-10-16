@@ -1,6 +1,9 @@
 # lg-cpp-assignment1
 This repo contains code solutions for assignment1 in the course C/C++ Programming
 
+# LÄNK TILL GITHUB
+https://github.com/LGruvberg/IoT25_LovGru-cpp-assignment1
+
 # Beskrivning
 Det här programmet låter användaren mata in 5 mätvärden (hel- eller flyttal går bra) manuellt eller genererat 
 slumpmässigt (genereras som flyttal/decimaltal. Kanske en framtida uppgradering: 'hur stora tal vill du generera?').
@@ -13,7 +16,7 @@ Efter inmatning ska användaren kunna ta fram statistik som visar de angivna vä
 -   Varians och standardavvikelse
 -   Sortera: ascending ↔ descending
 
-Potentiella förbättringar inför framtida git:
+##### Potentiella förbättringar inför framtida git:
 -   Göra felInputMsg(); (och kanske t.o.m. menyn) till strängvariabler istället.
 -   Vissa funktioner hade jag kunnat slå ihop, som delen för summa och medelvärde, men för läsbarheten behöll jag det.
 -   Att inte blanda svenska och engelska, som jag ju har gjort.

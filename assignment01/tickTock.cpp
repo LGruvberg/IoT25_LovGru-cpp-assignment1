@@ -19,7 +19,7 @@ int main() {
         // dinKlocka();
         std::cout << "det är hög tid att välja:\n1. TLDR\n2. Story-mode\n\tSvar: ";
         std::cin >> menyVal;
-        if (std::cin.fail()) {  // Fånga upp dålig input
+        if (std::cin.fail()) {  // Fånga dålig input
             felInput();
             continue;
         }

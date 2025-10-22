@@ -233,5 +233,5 @@ double funkVarians(const std::vector<double>& data) {
         double diff = v - medel;
         sum += diff * diff;
     }
-    return sum / (data.size() - 1); // Ta summan av totalen
+    return sum / (data.size() - 1); // Dividera totalen med antalet mätvärden -1
 }

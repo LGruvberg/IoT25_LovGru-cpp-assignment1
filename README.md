@@ -72,7 +72,8 @@ Vektorerna använder jag för att lagra värden, de kan växa/krympa dynamiskt, 
 -    Loopa igenom varje värde (vi kallar den 'v') i 'data'
 -    Skapa variabeln 'diff', som är [datavärde subtraherat med medelvärdet]
 -    Skapa variabeln 'kvadrat', den är ['diff' upphöjt till 2]
--    Lägg till värdet i totalen (när loopen är klar har vi en summa)
+-    Lägg till värdet i totalen
+-    Dividera summan av totalen med antal datavärden subtraherat med 1
 
 # EXTRA-APP -   tickTock.cpp
 Jag ville prova att göra en klocka som är live, men som först frågar vad du själv anser att klockan är, och räknar därifrån. 

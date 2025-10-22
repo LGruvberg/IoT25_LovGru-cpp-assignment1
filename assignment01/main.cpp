@@ -196,7 +196,7 @@ void funkSort(std::vector<double>& data) {
         std::cout << "OBS: det finns inga värden att sortera :o\n";
         return;
     }
-
+    // std::cout << ;
     std::cout << "Sortera:\n\t1. Stigande (ASC)\n\t2. Fallande (DESC)\n\tSvar:\t";
     int ascDesc;
     std::cin >> ascDesc;
@@ -223,15 +223,15 @@ double funkSumma(const std::vector<double>& data) {
 double funkMedelV(const std::vector<double>& data) {
     return funkSumma(data) / data.size();   // allt i databuffern divideras med antalet element i data (och avrundas)
 }
-
 double funkVarians(const std::vector<double>& data) {
-    double  sum = 0.0,                  //  Noll:a sum
-            medel = funkMedelV(data),   //  Ta fram medelvärdet
-            sumKvadrat = 0;
-    for (double v : data) {             //  Loopa igenom varje värde (vi kallar den 'v') i 'data'
-        double diff = v - medel;        //  Skapa variabeln 'diff', den är [varje värde - medelvärdet]
-        double kvadrat = diff * diff;   //  Skapa variabeln 'kvadrat', den är [diff upphöjt till 2]
-        sum += kvadrat;                 //  Lägg till värdet i totalen (när loopen är klar har vi en summa)
+    if (data.size() < 2) { // Undvik division med 0
+        return 0.0;
+     } 
+    double sum = 0.0;
+    double medel = funkMedelV(data);
+    for (double v : data) {
+        double diff = v - medel;
+        sum += diff * diff;
     }
-    return sum;
+    return sum / (data.size() - 1);
 }

@@ -72,7 +72,7 @@ int main() {
                 break;
         }
     }
-    while (val != 5);           // Check
+    while (val != 5); // Tills användaren avslutar programmet
     return 0;
 }
 

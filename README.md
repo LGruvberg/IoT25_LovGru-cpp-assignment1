@@ -5,8 +5,7 @@ This repo contains code solutions for assignment1 in the course C/C++ Programmin
 https://github.com/LGruvberg/IoT25_LovGru-cpp-assignment1
 
 # Beskrivning
-Det här programmet låter användaren mata in 5 mätvärden (hel- eller flyttal går bra) manuellt eller genererat 
-slumpmässigt (genereras som flyttal/decimaltal. Kanske en framtida uppgradering: 'hur stora tal vill du generera?').
+Det här programmet låter användaren mata in ett valfritt antal mätvärden (hel- eller flyttal går bra), manuellt eller slumpmässigt genererat (genereras som flyt-tal).
 
 Efter inmatning ska användaren kunna ta fram statistik som visar de angivna värdenas: 
 -   Summa
@@ -76,5 +75,5 @@ Vektorerna använder jag för att lagra värden, de kan växa/krympa dynamiskt, 
 -    Lägg till värdet i totalen (när loopen är klar har vi en summa)
 
 # EXTRA-APP -   tickTock.cpp
-Jag ville prova att göra en klocka som är live, men som först frågar vad du anser att klockan är, och räknar därifrån. 
+Jag ville prova att göra en klocka som är live, men som först frågar vad du själv anser att klockan är, och räknar därifrån. 
 Antingen går man in i story-mode (som egentligen gör programmet onödigt stort), eller så tar man TLDR (too long didn't read) och hoppar in i klockinmatningen direkt.

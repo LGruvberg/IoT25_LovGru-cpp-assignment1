@@ -62,9 +62,19 @@ Vektorerna använder jag för att lagra värden, de kan växa/krympa dynamiskt, 
                         från lägsta värdet med 'data.begin' till det högsta värdet 'data.end'.
         2: "Fallande" här gör vi samma sak fast med 'r'(everse), 'data.rbegin' och 'data.rend'.
 ## funkSumma();
-        accumulate på datat från början till slut, 0.0 är startsumma
+    Info:
+    Accumulate på datat från början till slut, 0.0 är startsumma
 ## funkMedelV();
     Info:
     Dividera summan (alla + alla) av datat med datastorleken (antalet värden).
 ## funkVarians();
     Info: 
+-    Ta fram medelvärdet
+-    Loopa igenom varje värde (vi kallar den 'v') i 'data'
+-    Skapa variabeln 'diff', som är [datavärde subtraherat med medelvärdet]
+-    Skapa variabeln 'kvadrat', den är ['diff' upphöjt till 2]
+-    Lägg till värdet i totalen (när loopen är klar har vi en summa)
+
+# EXTRA-APP -   tickTock.cpp
+Jag ville prova att göra en klocka som är live, men som först frågar vad du anser att klockan är, och räknar därifrån. 
+Antingen går man in i story-mode (som egentligen gör programmet onödigt stort), eller så tar man TLDR (too long didn't read) och hoppar in i klockinmatningen direkt.

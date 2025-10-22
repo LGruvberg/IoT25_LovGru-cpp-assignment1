@@ -8,6 +8,10 @@
 #include <iomanip>      // för 'std::setprecision(2)' som formatterar längden på flyttal i programmet (den är fast på 2 siffror efter decimaltecknet) 
 #include <random>       // för random-generatorn
 
+int count = 1, 
+    menyVal, 
+    antalVLimit;  // Gräns för antal värden att räkna ut
+
 void    felInputMsg();
 double  funkVarians(const std::vector<double>& data);
 double  funkMedelV(const std::vector<double>& data);
@@ -20,11 +24,12 @@ void    funkSort(std::vector<double>& data);
 
 int main() {
     std::vector<double> maetvaerden;
-    int val = 0;
+    int val;
 
     do {
+        int count = 1;
         std::cout << "\n::::::::::::::::::MENY::::::::::::::::::\n"
-        << "1.\tLägg till nya mätvärden\n"
+        << "1.\tLägg till mätvärden\n"
         << "2.\tVisa statistik\n"
         << "3.\tSök efter ett befintligt värde\n"
         << "4.\tSortera befintliga värden\n"
@@ -32,15 +37,21 @@ int main() {
         << "\nSvar: \t";
         std::cin >> val;
 
-        if (std::cin.fail()) {  // Vid felaktig input (t ex 'abc') ELLER om input är mindre än 1 ELLER större än 5
-            std::cin.clear();
-            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        if (std::cin.fail()) {  // Vid felaktig input (utkommenterade rader ingår i funktionen felInputMsg)
+            // std::cin.clear();
+            // std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
             felInputMsg();
             continue;
         }
 
         switch (val) {
             case 1:
+                std::cout   << "Hur många värden vill du räkna?\n\tSvar: ";
+                std::cin    >> antalVLimit;
+                if (std::cin.fail()) {  // Vid felaktig input
+                    felInputMsg();
+                    continue;
+                }
                 dataInmatning(maetvaerden);
                 break;
             case 2:
@@ -56,16 +67,20 @@ int main() {
                 std::cout << "Avslutar...\n";
                 break;
             default:
-                void felInputMsg();
+                // void felInputMsg();
+                felInputMsg();
                 break;
         }
-
-    } while (val != 5);
-
+    }
+    while (val != 5);           // Check
     return 0;
 }
 
 void felInputMsg() {
+    //
+    std::cin.clear();
+    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+    //
     std::cout   
         << "::::::::::::::::::::::::::::::::::::::::\n"
         << "Det där är inte ett giltigt alternativ :/\n\t"
@@ -74,46 +89,51 @@ void felInputMsg() {
 }
 
 void dataInmatning(std::vector<double>& data) {     // Vector med double-värden
-    std::cout << "Ange ...\n1. Manuell inmatning (upp till 5 värden, ange 'q' när du är färdig)\n2. Generera 5 random-värden\n\tSvar:\t";
+    std::cout << "Ange ...\n1. Manuell inmatning (Ange " << antalVLimit << " st värden eller 'q' om du vill ange färre)\n2. Generera " << antalVLimit << " random-värden\n\tSvar:\t";
     int count = 1;
-    int menyVal;
+    std::string strAntalV = "värden lagrade";
     std::cin >> menyVal;
     if (menyVal == 2) {
             funkRandom(data);
         }
-
     if (menyVal == 1) {
-        while (count <= 5) {
+        while (count <= antalVLimit) {
             std::cout << "Värde " << count << ":\t";
             std::string input;
             std::cin >> input;
         
         if (input == "q") {
             int antalV = count;
+            if (data.size() == 1) {     // värdeantalet är i singular
+                strAntalV = "lagrat värde";
+            }
             break;
         }
-        
         try {
             double value = stod(input);
             data.push_back(value);
         } catch(...) {
-            void felInputMsg();
+            // void felInputMsg();
+            felInputMsg();
         }
         count++;
     }
 }
-    std::cout << "\nNu finns det " << data.size() << " värden lagrade.\n";
+
+
+std::cout << "\nDet finns " << data.size() << " " << strAntalV << ".\n";
 }
 
 void funkRandom(std::vector<double>& data) {
-    std::cout << "Genererar 5 random-värden:\n";
+    // std::cout << "Genererar " << data.size() << "random-värden:\n";
     int count = 1;
 
     std::random_device rd;   // Seed ("frövärde") 
-    std::mt19937 gen(rd());  // Slumpgenerator, Mersenne Twister
+    std::mt19937 gen(rd());  // Mersenne Twister (random-generator)
     std::uniform_real_distribution<> dist(0.0, 101.0);
 
-    for (int i = 0; i < 5; ++i) {
+    // for (int i = 0; i < 5; ++i) {
+    for (int i = 0; i < antalVLimit; ++i) {
         double rand = dist(gen);
         data.push_back(rand);
         std::cout << "Värde " << count << ":\t" << std::fixed << std::setprecision(2) << rand << std::endl;
@@ -123,7 +143,7 @@ void funkRandom(std::vector<double>& data) {
 
 void funkStat(const std::vector<double>& data) {
     if (data.empty()) {
-        std::cout << "OBS: Du har inte lagt till några värden. Välj alternativ '1'.\n";
+        std::cout << "OBS: Du har inte lagt till några värden (välj '1' för att lägga till mätvärden).\n";
         return;
     }
     std::cout << std::fixed << std::setprecision(2);
@@ -205,9 +225,13 @@ double funkMedelV(const std::vector<double>& data) {
 }
 
 double funkVarians(const std::vector<double>& data) {
-    double medel = funkMedelV(data);
-    double sumKvadrat = 0;
-    for (double v : data)
-        sumKvadrat += pow(v - medel, 2);
-    return sumKvadrat / data.size();
+    double  sum = 0.0,                  //  Noll:a sum
+            medel = funkMedelV(data),   //  Ta fram medelvärdet
+            sumKvadrat = 0;
+    for (double v : data) {             //  Loopa igenom varje värde (vi kallar den 'v') i 'data'
+        double diff = v - medel;        //  Skapa variabeln 'diff', den är [varje värde - medelvärdet]
+        double kvadrat = diff * diff;   //  Skapa variabeln 'kvadrat', den är [diff upphöjt till 2]
+        sum += kvadrat;                 //  Lägg till värdet i totalen (när loopen är klar har vi en summa)
+    }
+    return sum;
 }

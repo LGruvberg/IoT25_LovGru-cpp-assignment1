@@ -1,8 +1,7 @@
 # lg-cpp-assignment1
 This repo contains code solutions for assignment1 in the course C/C++ Programming
 
-# LÄNK TILL GITHUB
-https://github.com/LGruvberg/IoT25_LovGru-cpp-assignment1
+[LÄNK TILL GITHUB](https://github.com/LGruvberg/IoT25_LovGru-cpp-assignment1)
 
 # Beskrivning
 Det här programmet låter användaren mata in ett valfritt antal mätvärden (hel- eller flyttal går bra), manuellt eller slumpmässigt genererat (genereras som flyt-tal).
@@ -29,23 +28,24 @@ Vektorerna använder jag för att lagra värden, de kan växa/krympa dynamiskt, 
 
 
 #### Information om funktionerna:
-## felInputMsg();  
+## badInput();  
     Info: 
     Den här funktionen ör egentligen bara ett meddelande, inga beräkningar görs här så det är (väl) ingen "riktig funktion". (Kan göras om till strängvariabel)
-## dataInmatning(std::vector<double>& data);
+## dataEntry(std::vector<double>& data);
     Info: 
     '&' betyder att vektorn blir en referens så att funktionen kan ändra originalet(?)
-## funkRandom();
+## rndFunc();
     Info: 
     Slumpar decimaltal över 0.0 och under 101.0 (det var inte lika lätt som i Python).
-## funkStat();
-    summa   = funkSumma(data);
-    medel   = funkMedelV(data);
-    varians = funkVarians(data);
-    stdAv   = sqrt(varians);
-    minv    = *min_element(data.begin(), data.end());
-    maxv    = *max_element(data.begin(), data.end());
-## funkSearch();
+## statFunc();
+    summa   = funkSumma(data);                          
+    medel   = funkMedelV(data);                         
+    varians = funkVarians(data);                        
+    stdAv   = sqrt(varians);                            
+    minv    = *min_element(data.begin(), data.end());   
+    maxv    = *max_element(data.begin(), data.end());   
+    
+## searchFunc();
     Info: 
     Användaren får ange variabeln 'double searchV'. 
     Om data-buffern är tom → hoppa ur funktionen.

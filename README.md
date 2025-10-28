@@ -3,7 +3,7 @@ This repo contains code solutions for assignment1 in the course C/C++ Programmin
 
 - [LINK TO (this) Assignment1](https://github.com/LGruvberg/IoT25_LovGru-cpp-assignment1)
 - [LINK TO Assignment2](https://github.com/LGruvberg/IoT25_LovGru-cpp-assignment2)
--     -> [Assignment2 README.md](https://github.com/LGruvberg/IoT25_LovGru-cpp-assignment2/blob/main/README.md)
+    - [Assignment2 README.md](https://github.com/LGruvberg/IoT25_LovGru-cpp-assignment2/blob/main/README.md)
 
 # Beskrivning
 Det här programmet låter användaren mata in ett valfritt antal mätvärden (hel- eller flyttal går bra), manuellt eller slumpmässigt genererat (genereras som flyt-tal).
